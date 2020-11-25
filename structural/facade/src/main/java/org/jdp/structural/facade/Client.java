@@ -1,5 +1,6 @@
 package org.jdp.structural.facade;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jdp.structural.facade.email.Email;
 import org.jdp.structural.facade.email.Mailer;
 import org.jdp.structural.facade.email.Stationary;
@@ -8,6 +9,7 @@ import org.jdp.structural.facade.email.Template;
 import org.jdp.structural.facade.email.Template.TemplateType;
 import org.jdp.structural.facade.email.TemplateFactory;
 
+@Slf4j
 public class Client {
 
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class Client {
 
         boolean result = sendOrderEmailWithoutFacade(order);
 
-        System.out.println("Order Email " + (result ? "sent!" : "NOT sent..."));
+        log.info("Order Email {}", (result ? "sent!" : "NOT sent..."));
 
     }
 
@@ -35,6 +37,7 @@ public class Client {
 
 // TODO
 // 1) Switch println to log
+// 2) Implement Facade
 
 // Added git config --local core.autocrlf false
 // to disable CRLF check
