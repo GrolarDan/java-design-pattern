@@ -8,17 +8,16 @@ import org.jdp.structural.facade.email.StationaryFactory;
 import org.jdp.structural.facade.email.Template;
 import org.jdp.structural.facade.email.Template.TemplateType;
 import org.jdp.structural.facade.email.TemplateFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
-public class Client {
+@SpringBootApplication
+public class Client implements CommandLineRunner {
 
     public static void main(String[] args) {
-        Order order = new Order("101", 99.99);
-
-        boolean result = sendOrderEmailWithoutFacade(order);
-
-        log.info("Order Email {}", (result ? "sent!" : "NOT sent..."));
-
+        SpringApplication.run(org.jdp.structural.facade.Client.class, args);
     }
 
     private static boolean sendOrderEmailWithoutFacade(Order order) {
@@ -33,11 +32,21 @@ public class Client {
         return mailer.send(email);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        Order order = new Order("101", 99.99);
+
+        boolean result = sendOrderEmailWithoutFacade(order);
+
+        log.info("Order Email {}", (result ? "sent!" : "NOT sent..."));
+    }
+
 }
 
 // TODO
 // 1) Switch println to log
-// 2) Implement Facade
+// 2) Refactor application to be a Spring Boot application
+// 3) Implement Facade
 
 // Added git config --local core.autocrlf false
 // to disable CRLF check
