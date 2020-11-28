@@ -13,7 +13,7 @@ public class Mailer {
     }
 
     public boolean send(Email email) {
-        return true;
+        return false;
     }
 ;
 
