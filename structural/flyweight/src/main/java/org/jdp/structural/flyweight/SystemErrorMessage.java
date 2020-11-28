@@ -3,7 +3,9 @@ package org.jdp.structural.flyweight;
 //A concrete Flyweight. Instance is shared
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 public class SystemErrorMessage implements ErrorMessage {
 
@@ -15,6 +17,7 @@ public class SystemErrorMessage implements ErrorMessage {
 
   @Override
   public String getText(String code) {
+    log.debug("Running getText of SystemErrorMessage");
     return messageTemplate.replace("$errorCode", code) + helpUrlBase + code;
   }
 
