@@ -30,7 +30,7 @@ public class Client implements CommandLineRunner {
 
 }
 
-// TODO
+// DONE
 // 1) Switch println to log
 // 2) Refactor application to be a Spring Boot application
 // 3) Implement Facade
