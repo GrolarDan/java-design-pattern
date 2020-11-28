@@ -6,11 +6,11 @@ import java.time.Duration;
 public class UserBannedErrorMessage implements ErrorMessage {
   //All state is defined here
 
-  private String caseId;
+  private final String caseId;
 
-  private String remarks;
+  private final String remarks;
 
-  private Duration banDuration;
+  private final Duration banDuration;
 
   private String msg;
 
