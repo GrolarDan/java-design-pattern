@@ -4,10 +4,12 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 import javafx.geometry.Point2D;
+import lombok.extern.slf4j.Slf4j;
 import org.jdp.structural.proxy.BitmapImage;
 import org.jdp.structural.proxy.Image;
 
 //Implement invocation handler. Your "proxy" code goes here.
+@Slf4j
 public class ImageInvocationHandler implements InvocationHandler {
 
   private final String filename;
@@ -21,8 +23,8 @@ public class ImageInvocationHandler implements InvocationHandler {
   static {
     try {
       setLocationMethod = Image.class.getMethod("setLocation", new Class[]{Point2D.class});
-      getLocationMethod = Image.class.getMethod("getLocation", null);
-      renderMethod = Image.class.getMethod("render", null);
+      getLocationMethod = Image.class.getMethod("getLocation", (Class<?>[]) null);
+      renderMethod = Image.class.getMethod("render", (Class<?>[]) null);
     } catch (NoSuchMethodException e) {
       throw new NoSuchMethodError(e.getMessage());
     }
@@ -36,7 +38,7 @@ public class ImageInvocationHandler implements InvocationHandler {
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
     //You can implement proxy logic here 
-    System.out.println("Invoking methood: " + method.getName());
+    log.info("Invoking methood: {}", method.getName());
     if (method.equals(setLocationMethod)) {
       return handleSetLocation(args);
     } else if (method.equals(getLocationMethod)) {

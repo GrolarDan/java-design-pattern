@@ -1,8 +1,10 @@
 package org.jdp.structural.proxy;
 
 import javafx.geometry.Point2D;
+import lombok.extern.slf4j.Slf4j;
 
 //Our concrete class providing actual functionality
+@Slf4j
 public class BitmapImage implements Image {
 
   private Point2D location;
@@ -10,7 +12,7 @@ public class BitmapImage implements Image {
 
   public BitmapImage(String filename) {
     //Loads image from file on disk
-    System.out.println("Loaded from disk:" + filename);
+    log.info("Loaded from disk: {}", filename);
     name = filename;
   }
 
@@ -27,7 +29,7 @@ public class BitmapImage implements Image {
   @Override
   public void render() {
     //renders to screen
-    System.out.println("Rendered " + this.name);
+    log.info("Rendered {}", this.name);
   }
 
 }

@@ -12,6 +12,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>12</maven.compiler.source>
     <maven.compiler.target>12</maven.compiler.target>
+    
+    <lombok.version>1.18.16</lombok.version>
+    <slf4j.version>1.7.30</slf4j.version>
   </properties>
     
   <dependencies>
@@ -20,6 +23,23 @@
       <artifactId>javafx-graphics</artifactId>
       <version>13</version>
       <type>jar</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${slf4j.version}</version>
     </dependency>
   </dependencies>
 
