@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 
 public class ImageProxy implements Image {
 
-  private String name;
+  private final String name;
   private BitmapImage image;
   private Point2D location;
 
