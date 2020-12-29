@@ -1,11 +1,14 @@
 package org.jdp.behavioral.responsibilitychain;
 
 import java.time.LocalDate;
+import lombok.extern.slf4j.Slf4j;
 import static org.jdp.behavioral.responsibilitychain.LeaveApplication.Type.PTO;
 
+@Slf4j
 public class Client {
 
   public static void main(String[] args) {
+    System.out.println(System.getProperty("org.slf4j.simpleLogger.defaultLogLevel"));
     LeaveApprover approver = setupApprovers();
     var application = LeaveApplication.builder()
             .type(PTO)
@@ -13,10 +16,9 @@ public class Client {
             .to(LocalDate.now().plusDays(4))
             .build();
     
-    System.out.println("Before approving:\n" + application);
-    System.out.println("--------------------------------");
+    log.info("{}", application);
     approver.processRequest(application);
-    System.out.println("After approving:\n" + application);
+    log.info("{}", application);
   }
 
   private static LeaveApprover setupApprovers() {

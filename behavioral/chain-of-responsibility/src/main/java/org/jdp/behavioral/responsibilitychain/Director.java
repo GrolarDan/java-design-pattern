@@ -1,6 +1,7 @@
 package org.jdp.behavioral.responsibilitychain;
 
 //A concrete handler
+
 public class Director extends Employee {
 
   public Director(LeaveApprover nextApprover) {
