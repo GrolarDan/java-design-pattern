@@ -1,0 +1,7 @@
+## YAML Template.
+---
+logging:
+  level:
+    org:
+      jdp:
+        behavioral: DEBUG
