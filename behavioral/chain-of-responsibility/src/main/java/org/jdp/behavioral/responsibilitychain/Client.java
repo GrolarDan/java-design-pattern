@@ -7,8 +7,8 @@ public class Client {
 
   public static void main(String[] args) {
     LeaveApprover approver = setupApprovers();
-    LeaveApplication application = LeaveApplication.getBuilder()
-            .withType(PTO)
+    var application = LeaveApplication.builder()
+            .type(PTO)
             .from(LocalDate.now())
             .to(LocalDate.now().plusDays(4))
             .build();

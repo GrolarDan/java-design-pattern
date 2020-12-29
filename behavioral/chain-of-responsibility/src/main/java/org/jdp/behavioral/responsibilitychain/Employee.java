@@ -1,15 +1,14 @@
 package org.jdp.behavioral.responsibilitychain;
 
 //Abstract handler
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public abstract class Employee implements LeaveApprover {
 
   private final String roleName;
   private final LeaveApprover nextApprover;
-
-  public Employee(String roleName, LeaveApprover nextApprover) {
-    this.roleName = roleName;
-    this.nextApprover = nextApprover;
-  }
 
   @Override
   public void processRequest(LeaveApplication application) {
