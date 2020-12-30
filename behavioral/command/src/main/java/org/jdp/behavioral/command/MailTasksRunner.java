@@ -2,10 +2,12 @@ package org.jdp.behavioral.command;
 
 import java.util.LinkedList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 //Throw Away POC code DON'T USE in PROD
 //This is invoker actually executing commands. 
 //starts a worker thread in charge of executing commands
 
+@Slf4j
 public class MailTasksRunner implements Runnable {
 
   private final Thread runner;
@@ -37,9 +39,9 @@ public class MailTasksRunner implements Runnable {
           try {
             pendingCommands.wait();
           } catch (InterruptedException e) {
-            System.out.println("Runner interrupted");
+            log.info("Runner interrupted");
             if (stop) {
-              System.out.println("Runner stopping");
+              log.info("Runner stopping");
               return;
             }
           }
