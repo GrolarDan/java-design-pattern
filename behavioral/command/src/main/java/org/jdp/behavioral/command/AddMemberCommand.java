@@ -1,6 +1,6 @@
 package org.jdp.behavioral.command;
 
-//A Concrete implementation of Command.
+//A Concrete implementation of Command
 public class AddMemberCommand implements Command {
 
   private final String emailAddress;
@@ -12,10 +12,15 @@ public class AddMemberCommand implements Command {
     this.mailingList = mailingList;
     this.receiver = receiver;
   }
-          
+
   @Override
   public void execute() {
     receiver.addMember(emailAddress, mailingList);
   }
-		
+
+  @Override
+  public String toString() {
+    return "AddMemberCommand{" + "emailAddress=" + emailAddress + ", mailingList=" + mailingList + ", receiver=" + receiver + '}';
+  }
+
 }

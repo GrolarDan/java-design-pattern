@@ -3,8 +3,10 @@ package org.jdp.behavioral.command;
 //This class is the receiver.
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
 public class EWSService {
 
   //Add a new member to mailing list

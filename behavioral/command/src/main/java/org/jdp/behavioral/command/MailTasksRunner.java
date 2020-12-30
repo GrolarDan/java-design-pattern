@@ -3,11 +3,13 @@ package org.jdp.behavioral.command;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 //Throw Away POC code DON'T USE in PROD
 //This is invoker actually executing commands. 
 //starts a worker thread in charge of executing commands
 
 @Slf4j
+@Service
 public class MailTasksRunner implements Runnable {
 
   private final Thread runner;
@@ -16,16 +18,9 @@ public class MailTasksRunner implements Runnable {
 
   private volatile boolean stop;
 
-  private static final MailTasksRunner RUNNER = new MailTasksRunner();
-
-  public static final MailTasksRunner getInstance() {
-    return RUNNER;
-  }
-
   private MailTasksRunner() {
     pendingCommands = new LinkedList<>();
     runner = new Thread(this);
-    runner.start();
   }
 
   //Run method takes pending commands and executes them.
@@ -36,6 +31,7 @@ public class MailTasksRunner implements Runnable {
       Command cmd = null;
       synchronized (pendingCommands) {
         if (pendingCommands.isEmpty()) {
+          log.debug("Waiting for new command");
           try {
             pendingCommands.wait();
           } catch (InterruptedException e) {
@@ -45,14 +41,15 @@ public class MailTasksRunner implements Runnable {
               return;
             }
           }
+          log.debug("Waiting ended");
         } else {
           cmd = pendingCommands.remove(0);
         }
       }
-      if (cmd == null) {
-        return;
+      if (cmd != null) {
+        log.debug("Executing command {}", cmd);
+        cmd.execute();
       }
-      cmd.execute();
     }
 
   }
@@ -60,13 +57,20 @@ public class MailTasksRunner implements Runnable {
   //Giving it a command will schedule it for later execution
   public void addCommand(Command cmd) {
     synchronized (pendingCommands) {
+      log.debug("Added new command {} to cue", cmd);
       pendingCommands.add(cmd);
       pendingCommands.notifyAll();
     }
   }
 
+  public void start() {
+    if (!runner.isAlive()) {
+      runner.start();
+    }
+  }
+
   public void shutdown() {
-    this.stop = true;
-    this.runner.interrupt();
+    stop = true;
+    runner.interrupt();
   }
 }
