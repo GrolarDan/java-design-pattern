@@ -2,22 +2,21 @@ package org.jdp.behavioral.interpreter;
 
 public class Report {
 
-	private String name;
-	//"NOT ADMIN", "FINANCE_USER AND ADMIN"
-	private String permission;
-	
-	public Report(String name, String permissions) {
-		this.name = name;
-		this.permission = permissions;
-	}
+  private final String name;
+  //"NOT ADMIN", "FINANCE_USER AND ADMIN"
+  private final String permission;
 
-	public String getName() {
-		return name;
-	}
+  public Report(String name, String permissions) {
+    this.name = name;
+    this.permission = permissions;
+  }
 
-	public String getPermission() {
-		return permission;
-	}
-	
-	
+  public String getName() {
+    return name;
+  }
+
+  public String getPermission() {
+    return permission;
+  }
+
 }

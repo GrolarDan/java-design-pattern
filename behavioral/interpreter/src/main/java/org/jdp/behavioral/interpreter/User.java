@@ -6,22 +6,22 @@ import java.util.stream.Stream;
 
 public class User {
 
-	private List<String> permissions;
-	
-	private String username;
-	
-	public User(String username, String... permissions) {
-		this.username = username;
-		this.permissions = new ArrayList<>();
-		Stream.of(permissions).forEach(e->this.permissions.add(e.toLowerCase()));
-	}
+  private List<String> permissions;
 
-	public List<String> getPermissions() {
-		return permissions;
-	}
+  private final String username;
 
-	public String getUsername() {
-		return username;
-	}
-	
+  public User(String username, String... permissions) {
+    this.username = username;
+    this.permissions = new ArrayList<>();
+    Stream.of(permissions).forEach(e -> this.permissions.add(e.toLowerCase()));
+  }
+
+  public List<String> getPermissions() {
+    return permissions;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
 }

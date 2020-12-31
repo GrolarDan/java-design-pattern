@@ -2,22 +2,22 @@ package org.jdp.behavioral.interpreter;
 
 //Non terminal expression
 public class OrExpression implements PermissionExpression {
-	
-	private PermissionExpression expression1;
-	private PermissionExpression expression2;
-	
-	public OrExpression(PermissionExpression one, PermissionExpression two) {
-		this.expression1 = one;
-		this.expression2 = two;
-	}
 
-	@Override
-	public boolean interpret(User user) {
-		return expression1.interpret(user) || expression2.interpret(user);
-	}
-	
-	@Override
-	public String toString() {
-		return expression1 +" OR "+expression2;
-	}
+  private final PermissionExpression leftExpression;
+  private final PermissionExpression rightExpression;
+
+  public OrExpression(PermissionExpression left, PermissionExpression right) {
+    this.leftExpression = left;
+    this.rightExpression = right;
+  }
+
+  @Override
+  public boolean interpret(User user) {
+    return leftExpression.interpret(user) || rightExpression.interpret(user);
+  }
+
+  @Override
+  public String toString() {
+    return leftExpression + " OR " + rightExpression;
+  }
 }
