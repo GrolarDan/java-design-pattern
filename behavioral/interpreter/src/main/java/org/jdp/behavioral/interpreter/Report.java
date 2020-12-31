@@ -19,4 +19,9 @@ public class Report {
     return permission;
   }
 
+  @Override
+  public String toString() {
+    return "Report{" + "name=" + name + '}';
+  }
+
 }
