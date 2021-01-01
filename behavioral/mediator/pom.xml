@@ -12,7 +12,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <javafx.version>13</javafx.version>
+    
+    <javafx.version>15</javafx.version>
+    <javafx.maven.plugin.version>0.0.5</javafx.maven.plugin.version>
+    
+    <main.class>org.jdp.behavioral.mediator.Client</main.class>
   </properties>
 
   <dependencies>
@@ -23,4 +27,34 @@
       <type>jar</type>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>${javafx.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <!-- Default configuration for running -->
+            <id>default-cli</id>
+            <configuration>
+              <mainClass>${main.class}</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <!-- Configuration for debugging -->
+            <id>debug</id>
+            <configuration>
+              <options>
+                <option>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</option>
+              </options>
+              <mainClass>${main.class}</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
 </project>

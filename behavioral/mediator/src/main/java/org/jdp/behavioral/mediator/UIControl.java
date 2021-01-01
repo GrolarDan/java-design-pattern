@@ -2,10 +2,10 @@ package org.jdp.behavioral.mediator;
 
 //Abstract colleague
 public interface UIControl {
-	
-	void controlChanged(UIControl control);
-	
-	String getControlValue();
-	
-	String getControlName();
+
+  void controlChanged(UIControl control);
+
+  String getControlValue();
+
+  String getControlName();
 }

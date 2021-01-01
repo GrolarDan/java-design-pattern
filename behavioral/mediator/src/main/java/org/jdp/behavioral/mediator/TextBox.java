@@ -2,10 +2,38 @@ package org.jdp.behavioral.mediator;
 
 import javafx.scene.control.TextField;
 
-public class TextBox extends TextField{
-	
-	public TextBox() {
-		this.setText("Textbox");
-	}
-	
+public class TextBox extends TextField implements UIControl {
+
+  private UIMediator mediator;
+  private boolean mediatedUpdate;
+
+  public TextBox(UIMediator mediator) {
+    this.mediator = mediator;
+    this.setText("Textbox");
+    this.mediator.register(this);
+    
+    this.textProperty().addListener((v, o, n) -> {
+      if (!mediatedUpdate) {
+        this.mediator.valueChanged(this);
+      }
+    });
+  }
+
+  @Override
+  public void controlChanged(UIControl control) {
+    mediatedUpdate = true;
+    setText(control.getControlValue());
+    mediatedUpdate = false;
+  }
+
+  @Override
+  public String getControlValue() {
+    return getText();
+  }
+
+  @Override
+  public String getControlName() {
+    return "TextBox";
+  }
+
 }
