@@ -2,8 +2,10 @@ package org.jdp.behavioral.interpreter;
 
 import java.util.Stack;
 import java.util.StringTokenizer;
+import org.springframework.stereotype.Service;
 
 //Parses & builds abstract syntax tree
+@Service
 public class ExpressionBuilder {
 
   private final Stack<PermissionExpression> permissions = new Stack<>();
