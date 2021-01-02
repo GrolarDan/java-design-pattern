@@ -3,9 +3,11 @@ package org.jdp.behavioral.mediator;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 //Mediator
 @Slf4j
+@Service
 public class UIMediator {
   List<UIControl> colleagues = new ArrayList<>();
   
