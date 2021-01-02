@@ -1,7 +1,9 @@
 package org.jdp.behavioral.mediator;
 
 import javafx.scene.control.TextField;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class TextBox extends TextField implements UIControl {
 
   private UIMediator mediator;
@@ -21,6 +23,7 @@ public class TextBox extends TextField implements UIControl {
 
   @Override
   public void controlChanged(UIControl control) {
+    log.info("Text box received change of {}", control.getControlName());
     mediatedUpdate = true;
     setText(control.getControlValue());
     mediatedUpdate = false;

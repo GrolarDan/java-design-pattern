@@ -1,8 +1,11 @@
 package org.jdp.behavioral.mediator;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Label extends javafx.scene.control.Label implements UIControl {
 
-  private UIMediator mediator;
+  private final UIMediator mediator;
 
   public Label(UIMediator mediator) {
     this.mediator = mediator;
@@ -13,6 +16,7 @@ public class Label extends javafx.scene.control.Label implements UIControl {
 
   @Override
   public void controlChanged(UIControl control) {
+    log.info("Label received change from {}", control.getControlName());
     setText(control.getControlValue());
   }
 
